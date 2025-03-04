@@ -1,14 +1,14 @@
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js';
 import { getFirestore, collection, addDoc, onSnapshot } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js';
-import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js';
+import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, onAuthStateChanged, signOut } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js';
 
 const firebaseConfig = {
-    apiKey: 'AIzaSyCQDrKrV_Lw6tcH8J3s86GncME2YG87wQE',
-    authDomain: 'aquamobile-60ef1.firebaseapp.com',
-    projectId: 'aquamobile-60ef1',
-    storageBucket: 'aquamobile-60ef1.firebasestorage.app',
-    messagingSenderId: '173078000814',
-    appId: '1:173078000814:web:dd941af27bf13100dbe93f',
+    apiKey: 'YOUR_API_KEY',
+    authDomain: 'YOUR_AUTH_DOMAIN',
+    projectId: 'YOUR_PROJECT_ID',
+    storageBucket: 'YOUR_STORAGE_BUCKET',
+    messagingSenderId: 'YOUR_MESSAGING_SENDER_ID',
+    appId: 'YOUR_APP_ID',
 };
 
 const app = initializeApp(firebaseConfig);
@@ -20,6 +20,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const passwordInput = document.getElementById('password');
     const signUpButton = document.getElementById('signUp');
     const signInButton = document.getElementById('signIn');
+    const signOutButton = document.getElementById('signOut');
+    const userStatus = document.getElementById('userStatus');
     const tipInput = document.getElementById('tip');
     const addTipButton = document.getElementById('addTip');
     const tipsList = document.getElementById('tipsList');
@@ -39,6 +41,25 @@ document.addEventListener('DOMContentLoaded', () => {
             alert('User signed in!');
         } catch (error) {
             alert(error.message);
+        }
+    });
+
+    signOutButton.addEventListener('click', async () => {
+        try {
+            await signOut(auth);
+            alert('User signed out!');
+        } catch (error) {
+            alert(error.message);
+        }
+    });
+
+    onAuthStateChanged(auth, (user) => {
+        if (user) {
+            userStatus.textContent = `Logged in as: ${user.email}`;
+            signOutButton.style.display = 'block';
+        } else {
+            userStatus.textContent = 'Not logged in';
+            signOutButton.style.display = 'none';
         }
     });
 
