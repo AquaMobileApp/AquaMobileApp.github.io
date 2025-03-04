@@ -3,12 +3,12 @@ import { getFirestore, collection, addDoc, onSnapshot } from 'https://www.gstati
 import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, onAuthStateChanged, signOut } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js';
 
 const firebaseConfig = {
-    apiKey: 'YOUR_API_KEY',
-    authDomain: 'YOUR_AUTH_DOMAIN',
-    projectId: 'YOUR_PROJECT_ID',
-    storageBucket: 'YOUR_STORAGE_BUCKET',
-    messagingSenderId: 'YOUR_MESSAGING_SENDER_ID',
-    appId: 'YOUR_APP_ID',
+  apiKey: "AIzaSyCQDrKrV_Lw6tcH8J3s86GncME2YG87wQE",
+  authDomain: "aquamobile-60ef1.firebaseapp.com",
+  projectId: "aquamobile-60ef1",
+  storageBucket: "aquamobile-60ef1.firebasestorage.app",
+  messagingSenderId: "173078000814",
+  appId: "1:173078000814:web:dd941af27bf13100dbe93f",
 };
 
 const app = initializeApp(firebaseConfig);
